@@ -1,54 +1,55 @@
-<html>
-  <head>
-    <link rel="stylesheet" href="transition.css" type="text/css">
-  </head>
-     
+
+---
+layout: default
+---
+<head>
+</head>
 <body>
- 
-   <!-- Slideshow container -->
-<div class="slideshow-container">
-
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    <p style="color:#FFFFFF; font-size:3em;padding-top:300px">DOCTOR PSYCHO</p>
-	<button class="beginButton" align="center" onclick="plusSlides(1)">Begin</button>
-  </div>
-
-  <div class="mySlides fade">
-    <div align="left" style="padding-left:15px">
-	    <p style="color:#FFFFFF; font-size:3em; padding-top:50px">TEST 1</p>
-	</div>
-	
-	
-	<p style="color:#FFFFFF; font-size:1.5em;padding-left:30px;padding-right:30px">
-	 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum, nisl eu condimentum suscipit, 
-	 quam enim aliquam leo, vel malesuada sem urna sed augue. Nulla in feugiat diam. Fusce consectetur, eros sit amet condimentum semper, 
-	 urna ipsum fringilla mauris, quis malesuada magna felis et ipsum. Sed ac pellentesque nisl. 
-	 Ut ut leo quis diam pellentesque rutrum ac nec odio. Sed eget enim eu augue laoreet ultricies. 
-	 Sed maximus efficitur porttitor. Maecenas porttitor neque orci, eget pulvinar massa ultrices ullamcorper. 
-	 Nulla eleifend urna ac est malesuada fermentum. Suspendisse sed auctor metus, consectetur fermentum libero. 
-	 Sed eget nulla sem. Donec consectetur non ante id commodo. Vivamus cursus viverra malesuada. 
-	 Nulla feugiat, dui vitae placerat bibendum, risus sem auctor sapien, sit amet faucibus augue felis sed felis. Maecenas sodales commodo diam sit amet mattis.
-	</p><br />
-	<p style="color:#FFFFFF; font-size:1.5em;padding-left:30px;padding-right:30px">
-	 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum, nisl eu condimentum suscipit, 
-	 quam enim aliquam leo, vel malesuada sem urna sed augue. Nulla in feugiat diam. Fusce consectetur, eros sit amet condimentum semper, 
-	 urna ipsum fringilla mauris, quis malesuada magna felis et ipsum. Sed ac pellentesque nisl. 
-	 
-	</p><br />
-	</div>
-  </div>
-
-  <div class="mySlides fade">
-    
-  </div>
-
-  
-</div>
-<br>
-
-
-<script src="transition.js"></script> 
-
+  <h1> Level1 </h1>
+  <h2> Story </h2>
+   <p id="p1">paragraph</p>
 </body>
-</html>
+
+  <script type="text/javascript">
+var paragraphText = "$%^& your pants. Here will be our story.";
+var index = 0;
+
+var element = document.getElementById("p1");
+element.innerHTML = paragraphText;
+
+ window.onload=function() 
+ {
+
+
+	//https://aceyan.github.io/imgd5400_puzzle_test/
+	document.onkeypress = function (event)
+	 {
+	    var e = event || window.event;
+	     //alert(e.keyCode + "   "+ paragraphText.charCodeAt(index) );
+	    if (e && e.keyCode == paragraphText.charCodeAt(index))
+	    { 
+	        
+			index++;
+
+			var typeInStr = paragraphText.substring(0,index);
+			var cursorStr = paragraphText.charAt(index);
+			var restStr = paragraphText.substring(index + 1, paragraphText.length);
+
+			var typeInStrHTML = "<span style='color:#ff0000;'>" + typeInStr + "</span>";
+			var cursorStrHTML = "<span style='color:#0000ff; text-decoration: underline ;'>"  + cursorStr.bold() + "</span>";
+			var restStrHTML = restStr;
+
+			element.innerHTML =  typeInStrHTML +  cursorStrHTML + restStrHTML;
+			if(index >= paragraphText.length)
+			{
+				 alert('Finish!');
+			}
+	    }
+	};
+
+ }
+
+
+
+
+</script>
