@@ -1,47 +1,88 @@
-var paragraphText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean elementum, nisl eu condimentum suscipit,"+
-	 "quam enim aliquam leo, vel malesuada sem urna sed augue. Nulla in feugiat diam. Fusce consectetur, eros sit amet condimentum semper,"+ 
-	 "urna ipsum fringilla mauris, quis malesuada magna felis et ipsum. Sed ac pellentesque nisl."+ 
-	 "Ut ut leo quis diam pellentesque rutrum ac nec odio. Sed eget enim eu augue laoreet ultricies."+
-	 "Sed maximus efficitur porttitor. Maecenas porttitor neque orci, eget pulvinar massa ultrices ullamcorper."+ 
-	 "Nulla eleifend urna ac est malesuada fermentum. Suspendisse sed auctor metus, consectetur fermentum libero."+ 
-	 "Sed eget nulla sem. Donec consectetur non ante id commodo. Vivamus cursus viverra malesuada."+
-	 "Nulla feugiat, dui vitae placerat bibendum, risus sem auctor sapien, sit amet faucibus augue felis sed felis. Maecenas sodales commodo diam sit amet mattis."+
-	 "<br /><br />"+
-	 "Nulla eleifend urna ac est malesuada fermentum. Suspendisse sed auctor metus, consectetur fermentum libero."+ 
-	 "Sed eget nulla sem. Donec consectetur non ante id commodo. Vivamus cursus viverra malesuada."+
-	 "Nulla feugiat, dui vitae placerat bibendum, risus sem auctor sapien, sit amet faucibus augue felis sed felis. Maecenas sodales commodo diam sit amet mattis.";
 
-var index = 0;
+var enterText = "<br /><br />";
+var paragraph1Text = "So you have accepted my challenge and likely do not know what this is about. Well... I am about to tell you.";
+var paragraph2Text = "You see that timer in the top right hand corner? If it goes to zero, then the puppies will die. What puppies? The cute kind that's what. The ones that YOU DO NOT want to die!";
+var paragraph3Text = "Since you don't want the puppies to die, I encourage YOU to type quickly because things will become MUCH... MORE... DIFFICULT! How difficult?! ReAlLy DiffiCULT!!!";
+var paragraph4Text = "These challenging challenges will make you want to $%^& your pants because your success determines whether these puppies will live or DIE!!!";
+var paragraph5Text = "Now you might be wondering why I'm doing this. It's because I'm a MaLEvoLeNT, iNEviTAble, DEMENted, inSANE, UNpropitious, and maniacal son of a &*$%@!!! Pretty much I'm a psycho. And that's DOCTOR Psycho to you!";
+var paragraph6Text = "Go %^&* yourself,";
+var paragraph7Text = "Doctor Psycho";
 
+
+var paragraphArray=new Array();
+paragraphArray[0] = paragraph1Text;
+paragraphArray[1] = paragraph2Text;
+paragraphArray[2] = paragraph3Text;
+paragraphArray[3] = paragraph4Text;
+paragraphArray[4] = paragraph5Text;
+paragraphArray[5] = paragraph6Text;
+paragraphArray[6] = paragraph7Text;
+
+var textIndex = 0;
+var paragraphIndex = 0;//index in paragraphArray
+
+var currentParagraphText  = paragraph1Text;//current paragraph text
+
+
+//init 
 var element = document.getElementById("level1");
-element.innerHTML = paragraphText;
+element.innerHTML = currentParagraphText;
+
+//update HTML for paragraphs
+function updateHTML()
+{
+
+		var finishedParagraphText = "";//paragraphs that have already been typed
+
+		for (i = 0; i < paragraphIndex; i++) 
+		{ 
+    		finishedParagraphText += paragraphArray[i] + enterText;
+ 		}
+
+			var typeInStr = currentParagraphText.substring(0,textIndex);
+			var cursorStr = currentParagraphText.charAt(textIndex);
+			var restStr = currentParagraphText.substring(textIndex + 1, currentParagraphText.length);
+
+			var typeInStrHTML = "<span style='color:#ff0000;'>" + typeInStr + "</span>";
+			var cursorStrHTML = "<span style='color:#0000ff; text-decoration: underline ;'>"  + cursorStr.bold() + "</span>";
+			var restStrHTML = restStr;
+			var finishedParagraphHTML = "<span style='color:#ff0000;'>" + finishedParagraphText + "</span>";
+			element.innerHTML =  "<p align='left'>" +  finishedParagraphHTML   +   typeInStrHTML +  cursorStrHTML + restStrHTML + "</p>";
+}
+
+updateHTML();
 
  window.onload=function() 
  {
 
 
-	//https://aceyan.github.io/imgd5400_puzzle_test/
 	document.onkeypress = function (event)
 	 {
 	    var e = event || window.event;
-	     //alert(e.keyCode + "   "+ paragraphText.charCodeAt(index) );
-	    if (e && e.keyCode == paragraphText.charCodeAt(index))
+	     console.log(e.keyCode + "   "+ currentParagraphText.charCodeAt(textIndex) );
+	    if (e && e.keyCode == currentParagraphText.charCodeAt(textIndex))
 	    { 
 	        
-			index++;
+			textIndex++;
 
-			var typeInStr = paragraphText.substring(0,index);
-			var cursorStr = paragraphText.charAt(index);
-			var restStr = paragraphText.substring(index + 1, paragraphText.length);
+			updateHTML();
 
-			var typeInStrHTML = "<span style='color:#ff0000;'>" + typeInStr + "</span>";
-			var cursorStrHTML = "<span style='color:#0000ff; text-decoration: underline ;'>"  + cursorStr.bold() + "</span>";
-			var restStrHTML = restStr;
 
-			element.innerHTML =  typeInStrHTML +  cursorStrHTML + restStrHTML;
-			if(index >= paragraphText.length)
+			if(textIndex >= currentParagraphText.length)
 			{
-				 alert('Finish!');
+				paragraphIndex++;
+				if(paragraphIndex >= paragraphArray.length)
+				{
+					//finish the level
+				 	alert('Finish!');
+				}
+				else
+				{
+					//go to next paragraph and display
+					textIndex = 0;
+					currentParagraphText  = paragraphArray[paragraphIndex];
+					updateHTML();
+				}
 			}
 	    }
 	};
