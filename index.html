@@ -4,24 +4,25 @@
   </head>
      
 <body>
- 
+
    <!-- Slideshow container -->
 <div class="slideshow-container">
+ 	<div id="timer" style="color:white; padding-top:100px; margin-right:100px; font-size:50px" align="right"></div>
 
   <!-- Full-width images with number and caption text -->
   <div class="mySlides fade">
-    <p style="color:#FFFFFF; font-size:3em;padding-top:300px">DOCTOR PSYCHO</p>
-	<button class="beginButton" align="center" onclick="plusSlides(1)">Begin</button>
+    <p style="color:#FFFFFF; font-size:3em;margin-top:200px">DOCTOR PSYCHO</p>
+	<button class="beginButton" align="center" onclick="plusSlides(1);timerFunc()">Begin</button>
   </div>
 
   <div class="mySlides fade" style="display:none">
     <div align="left" style="padding-left:15px">
-	    <p style="color:#FFFFFF; font-size:3em; padding-top:50px">TEST 1</p>
+	    <p style="color:#FFFFFF; font-size:3em; margin-top:50px">TEST 1</p>
 		<p style="color:#FFFFFF; font-size:1.5em;padding-left:30px;padding-right:30px" id="level1"></p>
 
 	</div>
 	
-	  <button class="nextButton" align="right" onclick="plusSlides(1)" id="next1" style="visibility:hidden">Next</button>
+	  <button class="nextButton" onclick="plusSlides(1)" id="next1" style="visibility:hidden">Next</button>
 
 	</div>
   <div class="mySlides fade" style="display:none">
@@ -44,4 +45,6 @@
 
 </body>
 <script src="typing.js"></script> 
+<script src="timer.js"></script> 
+
 </html>
