@@ -73,8 +73,7 @@ updateHTML();
 				paragraphIndex++;
 				if(paragraphIndex >= paragraphArray.length)
 				{
-					//finish the level
-				 	alert('Finish!');
+					 document.getElementById("next1").style.visibility = "visible"; 
 				}
 				else
 				{

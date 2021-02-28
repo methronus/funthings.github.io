@@ -103,7 +103,18 @@ body{
     border: 3px solid #f00;
 	
 }
-
+.nextButton{
+	
+	text-align:center;
+	width:150px;
+	height:40px;
+	box-sizing:border-box;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 3px solid #f00;
+	float:right;
+	
+}
 
 @-webkit-keyframes fade {
   from {opacity: .4}
